@@ -18,7 +18,7 @@ namespace base64
             InitializeComponent();
         }
        
-        string  Passwd= "P%Pq5GZO";//加密密钥
+        string  Passwd= "12345678";//加密密钥
         string Url = "";
         string source = "";//原文件内容
         bool Encryption = false;//加密判断

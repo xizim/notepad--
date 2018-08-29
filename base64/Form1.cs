@@ -51,7 +51,7 @@ namespace base64
                     }
                     if(tmpEncryption)
                     {
-                        textBox1.Text = tmp;
+                        textBox1.Text = sr;
                         source = sr;
                         sTmp.Close();           //关闭StreamWriter对象
                         toolStripStatusURL.Text = pathC;

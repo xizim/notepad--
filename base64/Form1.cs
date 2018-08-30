@@ -442,7 +442,7 @@ namespace base64
         {
             //发生修改
 
-                if (source != "")
+                if (source != null)
                 {
                     if(Encryption)//加密了的话
                     {

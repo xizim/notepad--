@@ -243,6 +243,7 @@ namespace base64
                     sTmp.Write(base64.Encrypt(textBox1.Text, Passwd));          //将字符串写入流
                     sTmp.Flush();           //将缓冲区数据写入流，并清理所有缓冲区
                     sTmp.Close();           //关闭StreamWriter对象
+                    this.Text = this.Text.Substring(this.Text.LastIndexOf("*") + 1);//去除未保存标识
                     MessageBox.Show("保存成功！");
                 }
                 else

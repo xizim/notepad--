@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -19,7 +19,7 @@ namespace base64
             InitializeComponent();
         }
        
-        string  Passwd= "12345678";//加密密钥
+        string  Passwd= "P%Pq5GZO";//加密密钥
         string Url = "";
         string source = "";//原文件内容
         bool Encryption = false;//加密判断
@@ -244,6 +244,7 @@ namespace base64
                     sTmp.Flush();           //将缓冲区数据写入流，并清理所有缓冲区
                     sTmp.Close();           //关闭StreamWriter对象
                     this.Text = this.Text.Substring(this.Text.LastIndexOf("*") + 1);//去除未保存标识
+                    source = base64.Encrypt(textBox1.Text, Passwd);
                     MessageBox.Show("保存成功！");
                 }
                 else
@@ -257,6 +258,7 @@ namespace base64
                         sTmp.Flush();           //将缓冲区数据写入流，并清理所有缓冲区
                         sTmp.Close();           //关闭StreamWriter对象
                         this.Text = this.Text.Substring(this.Text.LastIndexOf("*") + 1);//去除未保存标识
+                        source = textBox1.Text;
                         toolStripStatusURL.Text = saveFileDialog1.FileName;
                         toolStripStatusLabel1.Text = "编码:UTF-8";
                         MessageBox.Show("保存成功！");
@@ -271,6 +273,8 @@ namespace base64
                     sTmp.Write(textBox1.Text);          //将字符串写入流
                     sTmp.Flush();           //将缓冲区数据写入流，并清理所有缓冲区
                     sTmp.Close();           //关闭StreamWriter对象
+                    source = textBox1.Text;
+                    this.Text = this.Text.Substring(this.Text.LastIndexOf("*") + 1);//去除未保存标识
                     MessageBox.Show("保存成功！");
                 }
                 else
@@ -281,9 +285,11 @@ namespace base64
                     {
                         StreamWriter sTmp = new StreamWriter(saveFileDialog1.FileName);
                         sTmp.Write(textBox1.Text);
+                        source = textBox1.Text;
                         sTmp.Flush();           //将缓冲区数据写入流，并清理所有缓冲区
                         sTmp.Close();           //关闭StreamWriter对象
                         this.Text = this.Text.Substring(this.Text.LastIndexOf("*") + 1);//去除未保存标识
+
                         toolStripStatusURL.Text = saveFileDialog1.FileName;
                         toolStripStatusLabel1.Text = "编码:UTF-8";
                         MessageBox.Show("保存成功！");

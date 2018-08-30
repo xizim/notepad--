@@ -18,7 +18,7 @@ namespace base64
             InitializeComponent();
         }
        
-        string  Passwd= "12345678";//加密密钥
+        string  Passwd= "P%Pq5GZO";//加密密钥
         string Url = "";
         string source = "";//原文件内容
         bool Encryption = false;//加密判断
@@ -27,6 +27,7 @@ namespace base64
         bool OpenDecrypt = false;//打开自动解密
         private void Form1_Load(object sender, EventArgs e)
         {
+            GetFont();
             GetSetup();//加载配置文件
             string command = Environment.CommandLine;//获取进程命令行参数
             string[] para = command.Split('\"');
@@ -86,6 +87,19 @@ namespace base64
                     Judgment();//判断是否加密
                 }
             }
+        }
+        /// <summary>
+        /// 获取系统中所有的字体
+        /// </summary>
+        private void GetFont()
+        {
+            for (int i = 0; i < FontFamily.Families.Length; i++)
+            {
+                if(FontFamily.Families[i].Name!="")
+                toolStripComboBox1.Items.Add(FontFamily.Families[i].Name);
+
+            }
+
         }
         /// <summary>
         /// 加载配置文件
@@ -610,6 +624,39 @@ namespace base64
                 }
             }
 
+        }
+
+        private void toolStripComboBox1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void toolStripComboBox1_TextChanged(object sender, EventArgs e)
+        {
+            textBox1.Font = new Font(toolStripComboBox1.Text, textBox1.Font.Size, textBox1.Font.Style);
+
+        }
+
+        private void toolStripTextBox1_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                textBox1.Font = new Font(textBox1.Font.FontFamily, Convert.ToInt32(toolStripTextBox1.Text), textBox1.Font.Style);
+            }
+            catch
+            {
+                MessageBox.Show("大小设置错误");
+            }
+        }
+
+        private void 关于ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://github.com/xizim/notepad--");
+        }
+
+        private void 版本ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("当前版本为1.1");
         }
     }
 }

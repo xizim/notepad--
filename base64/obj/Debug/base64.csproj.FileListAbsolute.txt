@@ -4,6 +4,5 @@ E:\C#\base64\base64\base64\obj\Debug\base64.csproj.GenerateResource.cache
 E:\C#\base64\base64\base64\obj\Debug\base64.csproj.CoreCompileInputs.cache
 E:\C#\base64\base64\base64\bin\Debug\Notepad--.exe
 E:\C#\base64\base64\base64\bin\Debug\Notepad--.pdb
-E:\C#\base64\base64\base64\obj\Debug\base64.csprojAssemblyReference.cache
 E:\C#\base64\base64\base64\obj\Debug\Notepad--.exe
 E:\C#\base64\base64\base64\obj\Debug\Notepad--.pdb

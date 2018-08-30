@@ -41,14 +41,10 @@
             this.解密ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.保存自动加密ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.打开自动解密ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.右键菜单打开ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.编码ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.defaultToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gBKToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
-            this.toolStripStatusURL = new System.Windows.Forms.ToolStripStatusLabel();
-            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.查看ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.字体ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripComboBox1 = new System.Windows.Forms.ToolStripComboBox();
@@ -57,6 +53,11 @@
             this.帮助ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.关于ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.版本ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.toolStripStatusURL = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -123,7 +124,8 @@
             this.加密ToolStripMenuItem,
             this.解密ToolStripMenuItem,
             this.保存自动加密ToolStripMenuItem,
-            this.打开自动解密ToolStripMenuItem});
+            this.打开自动解密ToolStripMenuItem,
+            this.右键菜单打开ToolStripMenuItem});
             this.工具ToolStripMenuItem.Name = "工具ToolStripMenuItem";
             this.工具ToolStripMenuItem.Size = new System.Drawing.Size(44, 21);
             this.工具ToolStripMenuItem.Text = "工具";
@@ -131,30 +133,37 @@
             // 加密ToolStripMenuItem
             // 
             this.加密ToolStripMenuItem.Name = "加密ToolStripMenuItem";
-            this.加密ToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
+            this.加密ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.加密ToolStripMenuItem.Text = "加密";
             this.加密ToolStripMenuItem.Click += new System.EventHandler(this.加密ToolStripMenuItem_Click);
             // 
             // 解密ToolStripMenuItem
             // 
             this.解密ToolStripMenuItem.Name = "解密ToolStripMenuItem";
-            this.解密ToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
+            this.解密ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.解密ToolStripMenuItem.Text = "解密";
             this.解密ToolStripMenuItem.Click += new System.EventHandler(this.解密ToolStripMenuItem_Click);
             // 
             // 保存自动加密ToolStripMenuItem
             // 
             this.保存自动加密ToolStripMenuItem.Name = "保存自动加密ToolStripMenuItem";
-            this.保存自动加密ToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
+            this.保存自动加密ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.保存自动加密ToolStripMenuItem.Text = "保存自动加密";
             this.保存自动加密ToolStripMenuItem.Click += new System.EventHandler(this.保存自动加密ToolStripMenuItem_Click);
             // 
             // 打开自动解密ToolStripMenuItem
             // 
             this.打开自动解密ToolStripMenuItem.Name = "打开自动解密ToolStripMenuItem";
-            this.打开自动解密ToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
+            this.打开自动解密ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.打开自动解密ToolStripMenuItem.Text = "打开自动解密";
             this.打开自动解密ToolStripMenuItem.Click += new System.EventHandler(this.打开自动解密ToolStripMenuItem_Click);
+            // 
+            // 右键菜单打开ToolStripMenuItem
+            // 
+            this.右键菜单打开ToolStripMenuItem.Name = "右键菜单打开ToolStripMenuItem";
+            this.右键菜单打开ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.右键菜单打开ToolStripMenuItem.Text = "右键菜单打开";
+            this.右键菜单打开ToolStripMenuItem.Click += new System.EventHandler(this.右键菜单打开ToolStripMenuItem_Click);
             // 
             // 编码ToolStripMenuItem
             // 
@@ -168,43 +177,16 @@
             // defaultToolStripMenuItem
             // 
             this.defaultToolStripMenuItem.Name = "defaultToolStripMenuItem";
-            this.defaultToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.defaultToolStripMenuItem.Size = new System.Drawing.Size(110, 22);
             this.defaultToolStripMenuItem.Text = "UTF-8";
             this.defaultToolStripMenuItem.Click += new System.EventHandler(this.defaultToolStripMenuItem_Click);
             // 
             // gBKToolStripMenuItem
             // 
             this.gBKToolStripMenuItem.Name = "gBKToolStripMenuItem";
-            this.gBKToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.gBKToolStripMenuItem.Size = new System.Drawing.Size(110, 22);
             this.gBKToolStripMenuItem.Text = "GBK";
             this.gBKToolStripMenuItem.Click += new System.EventHandler(this.gBKToolStripMenuItem_Click);
-            // 
-            // statusStrip1
-            // 
-            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripStatusURL,
-            this.toolStripStatusLabel1});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 739);
-            this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(1264, 22);
-            this.statusStrip1.TabIndex = 14;
-            this.statusStrip1.Text = "statusStrip1";
-            // 
-            // toolStripStatusURL
-            // 
-            this.toolStripStatusURL.Name = "toolStripStatusURL";
-            this.toolStripStatusURL.Size = new System.Drawing.Size(0, 17);
-            // 
-            // toolStripStatusLabel1
-            // 
-            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            this.toolStripStatusLabel1.Size = new System.Drawing.Size(0, 17);
-            // 
-            // timer1
-            // 
-            this.timer1.Enabled = true;
-            this.timer1.Interval = 500;
-            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // 查看ToolStripMenuItem
             // 
@@ -220,7 +202,7 @@
             this.字体ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripComboBox1});
             this.字体ToolStripMenuItem.Name = "字体ToolStripMenuItem";
-            this.字体ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.字体ToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
             this.字体ToolStripMenuItem.Text = "字体";
             // 
             // toolStripComboBox1
@@ -236,7 +218,7 @@
             this.大小ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripTextBox1});
             this.大小ToolStripMenuItem.Name = "大小ToolStripMenuItem";
-            this.大小ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.大小ToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
             this.大小ToolStripMenuItem.Text = "大小";
             // 
             // toolStripTextBox1
@@ -268,6 +250,33 @@
             this.版本ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.版本ToolStripMenuItem.Text = "版本";
             this.版本ToolStripMenuItem.Click += new System.EventHandler(this.版本ToolStripMenuItem_Click);
+            // 
+            // statusStrip1
+            // 
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripStatusURL,
+            this.toolStripStatusLabel1});
+            this.statusStrip1.Location = new System.Drawing.Point(0, 739);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Size = new System.Drawing.Size(1264, 22);
+            this.statusStrip1.TabIndex = 14;
+            this.statusStrip1.Text = "statusStrip1";
+            // 
+            // toolStripStatusURL
+            // 
+            this.toolStripStatusURL.Name = "toolStripStatusURL";
+            this.toolStripStatusURL.Size = new System.Drawing.Size(0, 17);
+            // 
+            // toolStripStatusLabel1
+            // 
+            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(0, 17);
+            // 
+            // timer1
+            // 
+            this.timer1.Enabled = true;
+            this.timer1.Interval = 500;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // Form1
             // 
@@ -320,6 +329,7 @@
         private System.Windows.Forms.ToolStripMenuItem 帮助ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 关于ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 版本ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 右键菜单打开ToolStripMenuItem;
     }
 }
 

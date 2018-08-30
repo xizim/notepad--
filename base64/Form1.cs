@@ -9,6 +9,7 @@ using System.Text;
 using System.Windows.Forms;
 using base64;
 using System.Collections;
+using Microsoft.Win32;
 namespace base64
 {
     public partial class Form1 : Form
@@ -18,7 +19,7 @@ namespace base64
             InitializeComponent();
         }
        
-        string  Passwd= "12345678";//加密密钥
+        string  Passwd= "P%Pq5GZO";//加密密钥
         string Url = "";
         string source = "";//原文件内容
         bool Encryption = false;//加密判断
@@ -30,7 +31,9 @@ namespace base64
             GetFont();
             GetSetup();//加载配置文件
             string command = Environment.CommandLine;//获取进程命令行参数
+
             string[] para = command.Split('\"');
+
             if (para.Length > 3)
             {
                 if(OpenDecrypt)
@@ -657,6 +660,34 @@ namespace base64
         private void 版本ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             MessageBox.Show("当前版本为1.1");
+        }
+
+        private void 右键菜单打开ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("如果您非管理员身份运行,将无法进行操作！", "警告", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
+            try
+            {
+                RegistryKey shellKey = Registry.ClassesRoot.OpenSubKey(@"*\shell", true);
+                if (shellKey == null)
+                {
+                    shellKey = Registry.ClassesRoot.CreateSubKey(@"*\shell");
+                }
+                //创建项：右键显示的菜单名称
+                RegistryKey rightCommondKey = shellKey.CreateSubKey("使用 Notepad-- 打开");
+                RegistryKey associatedProgramKey = rightCommondKey.CreateSubKey("command");
+                //创建默认值：关联的程序
+                associatedProgramKey.SetValue(string.Empty, System.Diagnostics.Process.GetCurrentProcess().MainModule.FileName + " \"%1\"");
+                MessageBox.Show(System.Diagnostics.Process.GetCurrentProcess().MainModule.FileName + "%1");
+                //刷新到磁盘并释放资源
+                associatedProgramKey.Close();
+                rightCommondKey.Close();
+                shellKey.Close();
+                MessageBox.Show("设置成功！", "done");
+            }
+            catch (Exception a)
+            {
+                MessageBox.Show("无权限！请使用管理员身份运行", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }

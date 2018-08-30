@@ -677,7 +677,6 @@ namespace base64
                 RegistryKey associatedProgramKey = rightCommondKey.CreateSubKey("command");
                 //创建默认值：关联的程序
                 associatedProgramKey.SetValue(string.Empty, System.Diagnostics.Process.GetCurrentProcess().MainModule.FileName + " \"%1\"");
-                MessageBox.Show(System.Diagnostics.Process.GetCurrentProcess().MainModule.FileName + "%1");
                 //刷新到磁盘并释放资源
                 associatedProgramKey.Close();
                 rightCommondKey.Close();

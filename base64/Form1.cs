@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -26,6 +26,7 @@ namespace base64
         string tmp = "";//临时变量
         bool SaveEncrypt = false;//保存自动加密
         bool OpenDecrypt = false;//打开自动解密
+        string Version = "1.2";//当前版本
         private void Form1_Load(object sender, EventArgs e)
         {
             GetFont();
@@ -147,7 +148,7 @@ namespace base64
             }
           catch
             {
-                MessageBox.Show("获取配置文件失败！");
+                MessageBox.Show("配置文件获取失败！", "错误",MessageBoxButtons.OK,MessageBoxIcon.Error);
             }
 
         }
@@ -235,66 +236,73 @@ namespace base64
 
         private void Save()
         {
-            if(SaveEncrypt)
+            try
             {
-                if (Url != "")
+                if (SaveEncrypt)
                 {
-                    StreamWriter sTmp = new StreamWriter(Url);
-                    sTmp.Write(base64.Encrypt(textBox1.Text, Passwd));          //将字符串写入流
-                    sTmp.Flush();           //将缓冲区数据写入流，并清理所有缓冲区
-                    sTmp.Close();           //关闭StreamWriter对象
-                    this.Text = this.Text.Substring(this.Text.LastIndexOf("*") + 1);//去除未保存标识
-                    source = base64.Encrypt(textBox1.Text, Passwd);
-                    MessageBox.Show("保存成功！");
-                }
-                else
-                {
-                    saveFileDialog1.Title = "保存加密文件";
-                    saveFileDialog1.Filter = "xiz文件|*.xiz|记事本文件|*.txt|所有文件|*.*";
-                    if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+                    if (Url != "")
                     {
-                        StreamWriter sTmp = new StreamWriter(saveFileDialog1.FileName);
-                        sTmp.Write(base64.Encrypt(textBox1.Text, Passwd));
+                        StreamWriter sTmp = new StreamWriter(Url);
+                        sTmp.Write(base64.Encrypt(textBox1.Text, Passwd));          //将字符串写入流
                         sTmp.Flush();           //将缓冲区数据写入流，并清理所有缓冲区
                         sTmp.Close();           //关闭StreamWriter对象
                         this.Text = this.Text.Substring(this.Text.LastIndexOf("*") + 1);//去除未保存标识
-                        source = textBox1.Text;
-                        toolStripStatusURL.Text = saveFileDialog1.FileName;
-                        toolStripStatusLabel1.Text = "编码:UTF-8";
+                        source = base64.Encrypt(textBox1.Text, Passwd);
                         MessageBox.Show("保存成功！");
+                    }
+                    else
+                    {
+                        saveFileDialog1.Title = "保存加密文件";
+                        saveFileDialog1.Filter = "xiz文件|*.xiz|记事本文件|*.txt|所有文件|*.*";
+                        if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+                        {
+                            StreamWriter sTmp = new StreamWriter(saveFileDialog1.FileName);
+                            sTmp.Write(base64.Encrypt(textBox1.Text, Passwd));
+                            sTmp.Flush();           //将缓冲区数据写入流，并清理所有缓冲区
+                            sTmp.Close();           //关闭StreamWriter对象
+                            this.Text = this.Text.Substring(this.Text.LastIndexOf("*") + 1);//去除未保存标识
+                            source = textBox1.Text;
+                            toolStripStatusURL.Text = saveFileDialog1.FileName;
+                            toolStripStatusLabel1.Text = "编码:UTF-8";
+                            MessageBox.Show("保存成功！");
+                        }
+                    }
+                }
+                else
+                {
+                    if (Url != "")
+                    {
+                        StreamWriter sTmp = new StreamWriter(Url);
+                        sTmp.Write(textBox1.Text);          //将字符串写入流
+                        sTmp.Flush();           //将缓冲区数据写入流，并清理所有缓冲区
+                        sTmp.Close();           //关闭StreamWriter对象
+                        source = textBox1.Text;
+                        this.Text = this.Text.Substring(this.Text.LastIndexOf("*") + 1);//去除未保存标识
+                        MessageBox.Show("保存成功！");
+                    }
+                    else
+                    {
+                        saveFileDialog1.Title = "保存文件";
+                        saveFileDialog1.Filter = "xiz文件|*.xiz|记事本文件|*.txt|所有文件|*.*";
+                        if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+                        {
+                            StreamWriter sTmp = new StreamWriter(saveFileDialog1.FileName);
+                            sTmp.Write(textBox1.Text);
+                            source = textBox1.Text;
+                            sTmp.Flush();           //将缓冲区数据写入流，并清理所有缓冲区
+                            sTmp.Close();           //关闭StreamWriter对象
+                            this.Text = this.Text.Substring(this.Text.LastIndexOf("*") + 1);//去除未保存标识
+
+                            toolStripStatusURL.Text = saveFileDialog1.FileName;
+                            toolStripStatusLabel1.Text = "编码:UTF-8";
+                            MessageBox.Show("保存成功！");
+                        }
                     }
                 }
             }
-            else
+            catch
             {
-                if (Url != "")
-                {
-                    StreamWriter sTmp = new StreamWriter(Url);
-                    sTmp.Write(textBox1.Text);          //将字符串写入流
-                    sTmp.Flush();           //将缓冲区数据写入流，并清理所有缓冲区
-                    sTmp.Close();           //关闭StreamWriter对象
-                    source = textBox1.Text;
-                    this.Text = this.Text.Substring(this.Text.LastIndexOf("*") + 1);//去除未保存标识
-                    MessageBox.Show("保存成功！");
-                }
-                else
-                {
-                    saveFileDialog1.Title = "保存文件";
-                    saveFileDialog1.Filter = "xiz文件|*.xiz|记事本文件|*.txt|所有文件|*.*";
-                    if (saveFileDialog1.ShowDialog() == DialogResult.OK)
-                    {
-                        StreamWriter sTmp = new StreamWriter(saveFileDialog1.FileName);
-                        sTmp.Write(textBox1.Text);
-                        source = textBox1.Text;
-                        sTmp.Flush();           //将缓冲区数据写入流，并清理所有缓冲区
-                        sTmp.Close();           //关闭StreamWriter对象
-                        this.Text = this.Text.Substring(this.Text.LastIndexOf("*") + 1);//去除未保存标识
 
-                        toolStripStatusURL.Text = saveFileDialog1.FileName;
-                        toolStripStatusLabel1.Text = "编码:UTF-8";
-                        MessageBox.Show("保存成功！");
-                    }
-                }
             }
         }
 
@@ -307,12 +315,16 @@ namespace base64
         {
             Encryption = true;
             textBox1.Text = base64.Encrypt(textBox1.Text, Passwd);
+         
         }
 
         private void 解密ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Encryption = false;
             textBox1.Text = base64.Decrypt(textBox1.Text, Passwd);
+
+
+                
         }
 
 
@@ -441,7 +453,6 @@ namespace base64
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
-          
 
         }
 
@@ -666,7 +677,15 @@ namespace base64
 
         private void 版本ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("当前版本为1.1");
+            string getversion = WebsCan.GetWebContent("https://www.xiz.im/notepad--/version");
+            if (getversion != Version)
+            {
+                MessageBox.Show("当前已不是最新版本"+"\r\n"+ "当前版本:"+Version+"\r\n"+"最新版本:"+ getversion,"版本",MessageBoxButtons.OK,MessageBoxIcon.Asterisk);
+            }
+            else
+            {
+                MessageBox.Show("当前版本"+Version+"已是最新版本!","版本", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+            }
         }
 
         private void 右键菜单打开ToolStripMenuItem_Click(object sender, EventArgs e)
@@ -694,6 +713,29 @@ namespace base64
             {
                 MessageBox.Show("无权限！请使用管理员身份运行", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void 新建文件ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            textBox1.Text = "";
+            Url = "";
+            source = "";
+            toolStripStatusURL.Text = "新文件";
+        }
+
+        private void 查找ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void timer2_Tick(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 另存为ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Save();
         }
     }
 }
